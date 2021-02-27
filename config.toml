@@ -1,0 +1,39 @@
+debug = true
+listen = "0.0.0.0:8081"
+write_timeout = "15s"
+read_timeout = "15s"
+idle_timeout = "2m"
+
+[[routes]]
+type = "generic"
+path = '/'
+status_code = 200
+content_type = "text/plain"
+headers = "{}"
+body = 'oi'
+
+[[routes]]
+type = "generic"
+path = '/health'
+status_code = 200
+content_type = "application/json"
+body = '{"status":"ok"}'
+
+[[routes]]
+type = "generic"
+path = '/panic'
+status_code = 500
+content_type = "application/json"
+body = '{"error":"database out"}'
+
+[[routes]]
+path = '/legacy'
+status_code = 200
+content_type = "application/xml"
+body = '<xml><status>error</status></xml>'
+
+[[routes]]
+type = "echo"
+path = '/echo'
+status_code = 200
+content_type = "text/plain"
